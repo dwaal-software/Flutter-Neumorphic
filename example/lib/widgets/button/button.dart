@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class ButtonSample extends StatefulWidget {
+  const ButtonSample({super.key});
+
   @override
   createState() => _ButtonSampleState();
 }
@@ -11,13 +12,13 @@ class _ButtonSampleState extends State<ButtonSample> {
   Widget build(BuildContext context) {
     return NeumorphicTheme(
         themeMode: ThemeMode.light,
-        theme: NeumorphicThemeData(
+        theme: const NeumorphicThemeData(
           baseColor: Color(0xFFFFFFFF),
           intensity: 0.5,
           lightSource: LightSource.topLeft,
           depth: 10,
         ),
-        darkTheme: NeumorphicThemeData(
+        darkTheme: const NeumorphicThemeData(
           baseColor: Color(0xFF000000),
           intensity: 0.5,
           lightSource: LightSource.topLeft,
@@ -42,23 +43,23 @@ class __PageState extends State<_Page> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("back"),
+              child: const Text("back"),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 setState(() {
                   _useDark = !_useDark;
-                  NeumorphicTheme.of(context).themeMode =
+                  NeumorphicTheme.of(context)?.themeMode =
                       _useDark ? ThemeMode.dark : ThemeMode.light;
                 });
               },
-              child: Text("toggle theme"),
+              child: const Text("toggle theme"),
             ),
-            SizedBox(height: 34),
+            const SizedBox(height: 34),
             _buildTopBar(context),
           ],
         ),
@@ -72,7 +73,7 @@ class __PageState extends State<_Page> {
         onPressed: () {
           print("click");
         },
-        style: NeumorphicStyle(
+        style: const NeumorphicStyle(
           shape: NeumorphicShape.flat,
           boxShape: NeumorphicBoxShape.circle(),
         ),
@@ -87,10 +88,10 @@ class __PageState extends State<_Page> {
     );
   }
 
-  Color _iconsColor() {
+  Color? _iconsColor() {
     final theme = NeumorphicTheme.of(context);
-    if (theme.isUsingDark) {
-      return theme.current.accentColor;
+    if (theme != null && theme.isUsingDark) {
+      return theme.current?.accentColor;
     } else {
       return null;
     }

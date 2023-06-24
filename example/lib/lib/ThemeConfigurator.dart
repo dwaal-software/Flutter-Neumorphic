@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'ThemeColorSelector.dart';
 
 class ThemeConfigurator extends StatelessWidget {
+  const ThemeConfigurator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return NeumorphicButton(
-      padding: EdgeInsets.all(18),
-      style: NeumorphicStyle(
+      padding: const EdgeInsets.all(18),
+      style: const NeumorphicStyle(
         shape: NeumorphicShape.flat,
         boxShape: NeumorphicBoxShape.circle(),
       ),
@@ -50,7 +51,7 @@ class ThemeConfigurator extends StatelessWidget {
 class _ThemeConfiguratorDialog extends StatefulWidget {
   final BuildContext contextContainingTheme;
 
-  _ThemeConfiguratorDialog({this.contextContainingTheme});
+  const _ThemeConfiguratorDialog({required this.contextContainingTheme});
 
   @override
   _ThemeConfiguratorState createState() => _ThemeConfiguratorState();
@@ -71,10 +72,11 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
   }
 
   Widget intensitySelector() {
-    final intensity = NeumorphicTheme.intensity(widget.contextContainingTheme);
+    final intensity =
+        NeumorphicTheme.intensity(widget.contextContainingTheme) ?? 0;
     return Row(
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 12),
           child: Text("Intensity"),
         ),
@@ -87,7 +89,7 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
               setState(() {
                 NeumorphicTheme.update(
                   widget.contextContainingTheme,
-                  (current) => current.copyWith(
+                  (current) => current!.copyWith(
                     intensity: value,
                   ),
                 );
@@ -96,8 +98,8 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right: 12),
-          child: Container(
+          padding: const EdgeInsets.only(right: 12),
+          child: SizedBox(
             width: 40,
             child: Text(((intensity * 100).floor() / 100).toString()),
           ),
@@ -107,11 +109,11 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
   }
 
   Widget depthSelector() {
-    final depth = NeumorphicTheme.depth(widget.contextContainingTheme);
+    final depth = NeumorphicTheme.depth(widget.contextContainingTheme) ?? 0;
 
     return Row(
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 12),
           child: Text("Depth"),
         ),
@@ -124,15 +126,15 @@ class _ThemeConfiguratorState extends State<_ThemeConfiguratorDialog> {
               setState(() {
                 NeumorphicTheme.update(
                   widget.contextContainingTheme,
-                  (current) => current.copyWith(depth: value),
+                  (current) => current!.copyWith(depth: value),
                 );
               });
             },
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right: 12),
-          child: Container(
+          padding: const EdgeInsets.only(right: 12),
+          child: SizedBox(
             width: 40,
             child: Text(depth.floor().toString()),
           ),
