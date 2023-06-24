@@ -156,7 +156,7 @@ class FirstThemeContent extends StatelessWidget {
 class _MyDrawer extends StatelessWidget {
   final bool isLead;
 
-  const _MyDrawer({super.key, this.isLead = true});
+  const _MyDrawer({this.isLead = true});
 
   @override
   Widget build(BuildContext context) {

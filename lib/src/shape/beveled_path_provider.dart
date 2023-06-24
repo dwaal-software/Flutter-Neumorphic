@@ -1,5 +1,6 @@
-import '../../flutter_neumorphic.dart';
 import 'dart:math' as math;
+
+import '../../flutter_neumorphic.dart';
 
 class BeveledPathProvider extends NeumorphicPathProvider {
   final BorderRadius borderRadius;
